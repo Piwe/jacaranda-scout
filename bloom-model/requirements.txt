@@ -1,0 +1,9 @@
+# CPU-only torch keeps the install ~1 GB smaller:
+#   pip install --index-url https://download.pytorch.org/whl/cpu torch
+tabpfn>=9.1
+tabpfn-client>=0.2     # only for TABPFN_BACKEND=client
+fastapi>=0.110
+uvicorn>=0.29
+requests>=2.31
+scikit-learn>=1.4
+pandas>=2.1

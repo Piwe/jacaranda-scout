@@ -1,0 +1,8 @@
+target/
+data/
+*.p12
+.idea/
+*.iml
+.vscode/
+__pycache__/
+.venv/

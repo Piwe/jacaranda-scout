@@ -1,0 +1,7 @@
+# TABPFN_BACKEND=client: Prior Labs' hosted TabPFN, no torch (fits a small instance)
+tabpfn-client>=0.6
+fastapi>=0.110
+uvicorn>=0.29
+requests>=2.31
+scikit-learn>=1.4
+pandas>=2.1

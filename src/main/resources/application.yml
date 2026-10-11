@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: jacaranda-scout
+
+scout:
+  taxon-name: "Jacaranda mimosifolia"
+  # Default start (Emmarentia/Westcliff, Johannesburg) when the browser shares no location
+  default-lat: -26.1700
+  default-lon: 28.0300
+  lookback-days: 21          # sightings older than this are ignored
+  search-radius-km: 25
+  cluster-radius-m: 300      # sightings closer than this merge into one hotspot
+  half-life-days: 5          # a 5-day-old sighting counts half as much as today's
+  detour-factor: 1.3         # straight line -> street distance fudge for planning
+  max-stops: 6
+  data-dir: "./data"         # snapshots + saved plans, so the app works offline after one sync
+  user-agent: "jacaranda-scout/0.1 (open-source dev.to Touch Grass build)"
+  offline: false
+  http-timeout-seconds: 20
+
+  ollama:
+    enabled: true
+    base-url: "http://localhost:11434"
+    model: "qwen2.5:3b"     # any local chat model: llama3.2:3b, gemma3:4b, phi4-mini, ...
+    timeout-seconds: 90
+
+  vision:
+    enabled: false           # set true after `ollama pull gemma3:4b` to let the model check sighting photos
+    model: "gemma3:4b"
+    max-photos: 12
+
+  bloom-model:
+    enabled: true            # start the sidecar first: cd bloom-model && uvicorn server:app --port 8090
+    base-url: "http://localhost:8090"
+    timeout-seconds: 60
+
+  routing:
+    enabled: true
+    foot-url: "https://routing.openstreetmap.de/routed-foot/route/v1/foot"
+    bike-url: "https://routing.openstreetmap.de/routed-bike/route/v1/bike"
+    geocode-url: "https://nominatim.openstreetmap.org/search"
+
+logging:
+  level:
+    za.co.netbrainis: INFO

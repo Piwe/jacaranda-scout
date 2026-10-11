@@ -1,0 +1,7 @@
+target/
+data/
+*.p12
+.idea/
+.vscode/
+bloom-model/
+render/

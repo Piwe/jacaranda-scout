@@ -1,0 +1,10 @@
+{
+  "name": "Jacaranda Scout",
+  "short_name": "Jacaranda",
+  "description": "This week's best jacaranda blooms near you, as a walk or run loop. Runs on a local open-weight model.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#faf7fd",
+  "theme_color": "#2a1840",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

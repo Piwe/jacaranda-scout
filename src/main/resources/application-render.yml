@@ -1,0 +1,16 @@
+# Profile for Render (SPRING_PROFILES_ACTIVE=render). Render terminates TLS, so phones get the
+# https:// page they need for GPS without a self-signed certificate.
+# OLLAMA_HOSTPORT / BLOOM_MODEL_HOSTPORT come from render.yaml (private-network host:port).
+server:
+  port: ${PORT:8080}
+  forward-headers-strategy: framework
+
+scout:
+  data-dir: "/tmp/scout-data"   # ephemeral on Render: snapshots and saved plans reset on redeploy
+  ollama:
+    base-url: "http://${OLLAMA_HOSTPORT:localhost:11434}"
+    model: "${OLLAMA_MODEL:qwen2.5:1.5b}"
+    timeout-seconds: 120        # shared CPU is slower than a laptop
+  bloom-model:
+    base-url: "http://${BLOOM_MODEL_HOSTPORT:localhost:8090}"
+    timeout-seconds: 90

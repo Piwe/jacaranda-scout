@@ -1,0 +1,51 @@
+{
+  "cutoff": "2025-06-20",
+  "train_rows": 1528,
+  "test_rows": 393,
+  "test_rows_south_africa": 55,
+  "backend": "local",
+  "model": "tabpfn-v2-local",
+  "timings": {
+    "tabpfn_fit_predict_s": 38.4
+  },
+  "all": {
+    "season-histogram": {
+      "roc_auc": 0.842,
+      "brier": 0.163,
+      "log_loss": 0.503,
+      "accuracy": 0.779
+    },
+    "logistic": {
+      "roc_auc": 0.86,
+      "brier": 0.153,
+      "log_loss": 0.478,
+      "accuracy": 0.789
+    },
+    "tabpfn": {
+      "roc_auc": 0.908,
+      "brier": 0.126,
+      "log_loss": 0.408,
+      "accuracy": 0.842
+    }
+  },
+  "south_africa": {
+    "season-histogram": {
+      "roc_auc": 0.964,
+      "brier": 0.119,
+      "log_loss": 0.392,
+      "accuracy": 0.836
+    },
+    "logistic": {
+      "roc_auc": 0.95,
+      "brier": 0.125,
+      "log_loss": 0.398,
+      "accuracy": 0.8
+    },
+    "tabpfn": {
+      "roc_auc": 0.944,
+      "brier": 0.071,
+      "log_loss": 0.252,
+      "accuracy": 0.909
+    }
+  }
+}

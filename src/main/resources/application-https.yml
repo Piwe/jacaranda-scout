@@ -1,0 +1,12 @@
+# Phones only allow GPS on https:// pages (or localhost). Run with:
+#   mvn spring-boot:run -Dspring-boot.run.profiles=https
+# after creating a self-signed keystore once (see README):
+#   keytool -genkeypair -alias scout -keyalg RSA -keysize 2048 -validity 365 -storetype PKCS12 -keystore scout.p12 -storepass changeit -dname "CN=jacaranda-scout"
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: file:./scout.p12
+    key-store-password: changeit
+    key-store-type: PKCS12
+    key-alias: scout

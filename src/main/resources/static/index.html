@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2a1840">
+  <title>Jacaranda Scout</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="bar">
+  <div class="brand">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="7" cy="12" r="3"/><circle cx="17" cy="12" r="3"/><circle cx="12" cy="16" r="3"/><path d="M12 19v4" stroke-width="2"/></svg>
+    <span>Jacaranda Scout</span>
+  </div>
+  <span id="status" class="status" title="Local model status">checking…</span>
+</header>
+
+<div id="map" aria-label="Map of bloom hotspots"></div>
+
+<main class="sheet">
+  <form id="ask">
+    <label for="query" class="visually-hidden">Where and how far?</label>
+    <textarea id="query" rows="2" placeholder="e.g. easy 4 km walk from Zoo Lake with the dog">5 km run from here</textarea>
+    <div class="row">
+      <button type="button" id="locate" class="ghost">Use my location</button>
+      <button type="submit" id="go" class="primary">Find blooms</button>
+    </div>
+    <p class="hint">Or tap the map to set a start point.</p>
+  </form>
+
+  <section id="result" hidden>
+    <h1 id="headline"></h1>
+    <p id="meta" class="meta"></p>
+    <p id="briefing"></p>
+    <div id="storm" class="storm" hidden></div>
+    <div id="season" class="season"></div>
+    <div id="days" class="days" aria-label="Seven day outlook"></div>
+    <ol id="stops" class="stops"></ol>
+    <div class="row actions">
+      <button id="pocket" class="primary">Pocket mode</button>
+      <a id="gpx" class="button ghost" download>GPX for watch / OsmAnd</a>
+    </div>
+    <p id="sources" class="sources"></p>
+  </section>
+</main>
+
+<div id="pocketView" class="pocket" hidden>
+  <p class="pocket-label">Next bloom stop</p>
+  <p id="pocketNext" class="pocket-next">-</p>
+  <p id="pocketDist" class="pocket-dist">-</p>
+  <p class="pocket-help">Screen dims to black. You'll hear each stop.<br>Tap twice to exit.</p>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="app.js"></script>
+</body>
+</html>

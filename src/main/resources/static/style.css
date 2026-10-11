@@ -1,0 +1,93 @@
+:root {
+  --bg: #faf7fd;
+  --ink: #23182f;
+  --muted: #6d6079;
+  --line: #e6dcef;
+  --purple: #7b4fb8;
+  --purple-deep: #2a1840;
+  --purple-soft: #efe5fa;
+  --leaf: #3c7a4a;
+  --warn-bg: #fff1e0;
+  --warn-ink: #8a4b00;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  font: 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+}
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+.bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 16px; padding-top: max(10px, env(safe-area-inset-top));
+  background: var(--purple-deep); color: #fff;
+}
+.brand { display: flex; align-items: center; gap: 8px; font-weight: 650; letter-spacing: .2px; }
+.brand svg { width: 22px; height: 22px; fill: #b996ea; stroke: var(--leaf); }
+.status { font-size: 12px; padding: 3px 8px; border-radius: 999px; background: rgba(255,255,255,.12); }
+.status.ok { background: #2f6b3c; }
+.status.off { background: #6b4a2f; }
+
+#map { height: 42vh; min-height: 240px; background: #ddd; }
+
+.sheet { flex: 1; padding: 14px 16px 32px; max-width: 720px; width: 100%; margin: 0 auto; }
+textarea {
+  width: 100%; font: inherit; padding: 10px 12px; border-radius: 12px;
+  border: 1px solid var(--line); background: #fff; resize: vertical;
+}
+.row { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+button, .button {
+  font: inherit; font-weight: 600; padding: 10px 16px; border-radius: 12px; border: 0; cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
+}
+.primary { background: var(--purple); color: #fff; flex: 1; }
+.primary:disabled { opacity: .6; }
+.ghost { background: var(--purple-soft); color: var(--purple-deep); }
+.actions > * { flex: 1 1 0; white-space: nowrap; }
+.hint { color: var(--muted); font-size: 13px; margin: 8px 0 0; }
+
+#result h1 { font-size: 22px; margin: 18px 0 2px; }
+.meta { color: var(--muted); margin: 0 0 8px; font-size: 14px; }
+.storm { background: var(--warn-bg); color: var(--warn-ink); padding: 8px 12px; border-radius: 10px; font-size: 14px; margin: 8px 0; }
+.season { font-size: 14px; color: var(--purple-deep); background: var(--purple-soft); padding: 8px 12px; border-radius: 10px; }
+
+.days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin: 12px 0; }
+.day { text-align: center; font-size: 12px; padding: 6px 2px; border-radius: 8px; background: #fff; border: 1px solid var(--line); }
+.day b { display: block; font-size: 13px; }
+.day.best { border: 2px solid var(--purple); }
+.day .bar-fill { height: 4px; border-radius: 2px; margin-top: 4px; background: var(--purple); }
+
+.stops { list-style: none; padding: 0; margin: 12px 0; counter-reset: s; }
+.stops li { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.stops li::before {
+  counter-increment: s; content: counter(s);
+  flex: 0 0 28px; height: 28px; border-radius: 50%; background: var(--purple); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;
+}
+.stops .label { font-weight: 600; }
+.stops .cue { color: var(--muted); font-size: 14px; margin-top: 2px; }
+.stops img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; margin-left: auto; }
+
+.sources { font-size: 12px; color: var(--muted); margin-top: 16px; }
+
+.pocket {
+  position: fixed; inset: 0; background: #000; color: #5a4a6b; z-index: 9999;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px;
+}
+.pocket[hidden] { display: none; }
+.pocket-label { font-size: 14px; letter-spacing: 2px; text-transform: uppercase; }
+.pocket-next { font-size: 26px; color: #8e72b3; margin: 8px 0; }
+.pocket-dist { font-size: 56px; font-weight: 700; color: #6e5591; margin: 0; }
+.pocket-help { font-size: 13px; margin-top: 32px; }
+
+.bloom-pin { background: radial-gradient(circle, rgba(150,95,215,.85) 0%, rgba(150,95,215,.25) 60%, transparent 70%); border-radius: 50%; }
+.stop-pin {
+  background: var(--purple); color: #fff; border: 2px solid #fff; border-radius: 50%;
+  font: 700 13px/24px system-ui; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,.4);
+}
+.start-pin { background: var(--leaf); border: 3px solid #fff; border-radius: 50%; box-shadow: 0 1px 4px rgba(0,0,0,.4); }

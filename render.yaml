@@ -1,0 +1,54 @@
+# Render Blueprint: New > Blueprint in the Render dashboard, point it at this repo.
+# Three services on one private network; only the planner is public (HTTPS by default).
+services:
+  - type: web
+    name: jacaranda-scout
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: starter
+    region: frankfurt            # closest Render region to Gauteng
+    healthCheckPath: /
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: render
+      - key: OLLAMA_MODEL
+        value: qwen2.5:1.5b      # must match MODEL in render/ollama/Dockerfile
+      - key: OLLAMA_HOSTPORT
+        fromService:
+          type: pserv
+          name: scout-ollama
+          property: hostport
+      - key: BLOOM_MODEL_HOSTPORT
+        fromService:
+          type: pserv
+          name: scout-bloom-model
+          property: hostport
+
+  # Open-weight chat model (intent parsing + field-guide cues), private to the planner
+  - type: pserv
+    name: scout-ollama
+    runtime: docker
+    dockerfilePath: ./render/ollama/Dockerfile
+    dockerContext: ./render/ollama
+    plan: standard               # 2 GB RAM for a 1.5B model
+    region: frankfurt
+    envVars:
+      - key: PORT
+        value: "11434"
+
+  # TabPFN bloom chance. Hosted TabPFN by default: local TabPFN on one shared CPU takes minutes per call.
+  - type: pserv
+    name: scout-bloom-model
+    runtime: docker
+    dockerfilePath: ./bloom-model/Dockerfile
+    dockerContext: ./bloom-model
+    plan: starter
+    region: frankfurt
+    envVars:
+      - key: PORT
+        value: "8090"
+      - key: TABPFN_BACKEND
+        value: client
+      - key: TABPFN_TOKEN
+        sync: false              # paste your Prior Labs token in the dashboard (Hacktoberfest credits)
