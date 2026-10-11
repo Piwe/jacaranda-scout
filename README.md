@@ -107,7 +107,7 @@ The request takes 40–60 s on CPU, almost all of it in Ollama (three `/api/chat
 **What to watch for:**
 - **RAM.** With the TabPFN sidecar resident, the first Ollama call failed to allocate its 1.3 GB buffer (`unable to allocate CPU_REPACK buffer`). The planner logged it and fell back to rules and templates as designed, and the next request ran on the LLM. On 8 GB machines use a 1.5B model (`qwen2.5:1.5b`) or start Ollama before the sidecar.
 - **Fewer stops than asked.** No fresh sightings near Zoo Lake this week, so every stop is a known tree weighted by TabPFN, and the loop came out shorter than the 4 km target.
-- **Cue quality with a 3B model.** Cues are grounded in the stop list but sometimes generic ("listen for the sweet scent...") or point at the wrong stop number. A 7–8B model (`llama3:8b`) writes better cues at about twice the latency.
+- **Cue quality with a 3B model.** Cues are grounded in the stop list but sometimes generic ("listen for the sweet scent...") or point at the wrong stop number. A 7–8B model (`llama3:8b`) should write better cues, at the cost of latency (not benchmarked yet).
 
 ### Sync once, then go offline
 
