@@ -180,3 +180,7 @@ Only the planner is public; the models talk to it over Render's private network.
 ## Attribution
 
 Sightings: iNaturalist contributors (CC licences). Map & routing data © OpenStreetMap contributors (ODbL). Weather: Open-Meteo.com (CC BY 4.0). Demo data (shown with "(demo)" labels) is synthetic and only used when no live data or snapshot is available.
+
+## License
+
+Code: [MIT](LICENSE). The data it downloads keeps its own licences (see Attribution): `bloom-model/train.csv` is derived from iNaturalist observations (CC licences, per observation) and Open-Meteo weather (CC BY 4.0).
